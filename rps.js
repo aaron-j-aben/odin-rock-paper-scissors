@@ -14,30 +14,21 @@ playButton.addEventListener('click', playGame);
 function playGame() {
     let humanScore = 0;
     let cpuScore = 0;
-    let rounds = 5;
-    let errors = 0;
-    while (rounds > 0) {
-        try {
-            switch (playRound(getHumanChoice(), getComputerChoice())) {
-                case 1:
-                    humanScore++;
-                    break;
-                case -1:
-                    cpuScore++;
-                    break;
-                case 0:
-                    break;
-            }
-            console.log('Current Score:');
-            console.log(`You: ${humanScore}, CPU: ${cpuScore}`);
-            round--;
-        } catch (e) {
-            errors++;
-            if (errors >= 4) {
-                console.log("Too many incorrect inputs! Reset the game using the play button");
+    for (let rounds = 5; rounds > 0; rounds--) {
+        switch (playRound(getHumanChoice(), getComputerChoice())) {
+            case -1:
                 return;
-            }
+            case 1:
+                humanScore++;
+                break;
+            case 2:
+                cpuScore++;
+                break;
+            case 0:
+                break;
         }
+        console.log('Current Score:');
+        console.log(`You: ${humanScore}, CPU: ${cpuScore}`);
     }
 
     const pointDiff = humanScore - cpuScore;
@@ -60,10 +51,14 @@ function playRound(humanChoice, computerChoice) {
             case "rock": return 0;
             case "paper": return 1;
             case "scissors": return 2;
+            case null: return null;
         }
     };
 
     const choices = [humanChoice, computerChoice].map(rpsToNum);
+    if (choices[0] == null) {
+        return -1;
+    }
     const decision = choices[0] - choices[1];
 
     if (decision == -2 || decision == 1) {
@@ -71,7 +66,7 @@ function playRound(humanChoice, computerChoice) {
         return 1;
     } else if (decision == 2 || decision == -1) {
         console.log(`You lose! Here, ${computerChoice} beats ${humanChoice}.`);
-        return -1;
+        return 2;
     } else {
         console.log("Tie!");
         return 0;
@@ -93,21 +88,25 @@ function getComputerChoice() {
 
 /* Human choice selection*/
 function getHumanChoice() {
-    const humanChoice = prompt("Rock, Paper, or Scissors?").trim().toLowerCase();
-    switch (humanChoice) {
-        case "r": // Taking advantage of switch fall-through instead of using if-else
-        case "rock":
-            return "rock";
-        case "p":
-        case "paper":
-            return "paper";
-        case "s":
-        case "scissors":
-            return "scissors";
-        default:
-            console.log("That is not a valid option! Please choose rock, paper, or scissors.");
-            return null; // to be handled by main game program
-    }
+    let goodInput = false;
+    while (!goodInput) {
+        const humanChoice = prompt("Rock, Paper, or Scissors?").trim().toLowerCase();
+        switch (humanChoice) {
+            case "r": // Taking advantage of switch fall-through instead of using if-else
+            case "rock":
+                return "rock";
+            case "p":
+            case "paper":
+                return "paper";
+            case "s":
+            case "scissors":
+                return "scissors";
+            case null:
+                return null;
+            default:
+                console.log("That is not a valid option! Please choose rock, paper, or scissors.");
+        }
+    } 
 }
 
 /* CPU selection testing code */
