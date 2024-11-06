@@ -20,15 +20,19 @@ function playRound(humanChoice, computerChoice) {
             case "scissors": return 2;
         }
     };
+
     const choices = [humanChoice, computerChoice].map(rpsToNum);
     const decision = choices[0] - choices[1];
 
     if (decision == -2 || decision == 1) {
         console.log(`You win! Here, ${humanChoice} beats ${computerChoice}.`);
-        return true;
+        return 1;
     } else if (decision == 2 || decision == -1) {
         console.log(`You lose! Here, ${computerChoice} beats ${humanChoice}.`);
-        return false;
+        return -1;
+    } else {
+        console.log("Tie!");
+        return 0;
     }
 }
 
