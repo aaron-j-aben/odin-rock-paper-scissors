@@ -8,7 +8,14 @@
 
 /* Primary Game Logic */
 function playRound(humanChoice, computerChoice) {
-
+    let rpsToNum = (c) => {
+        switch(c) {
+            case "rock": return 0;
+            case "paper": return 1;
+            case "scissors": return 2;
+        }
+    };
+    [humanChoice, computerChoice].map(rpsToNum)
 }
 
 /* Computer choice selection */
