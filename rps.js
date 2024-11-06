@@ -7,7 +7,7 @@
 */
 
 /* Primary Game Logic */
-playGame();
+//playGame();
 
 // Play a 5-round game of RPS
 function playGame() {
