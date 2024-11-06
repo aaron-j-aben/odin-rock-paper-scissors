@@ -7,7 +7,8 @@
 */
 
 /* Primary Game Logic */
-//playGame();
+const playButton = document.querySelector(".play");
+playButton.addEventListener('click', playGame);
 
 // Play a 5-round game of RPS
 function playGame() {
