@@ -26,22 +26,16 @@ function getComputerChoice() {
 
 /* Human choice seleciton*/
 function getHumanChoice() {
-    const humanChoice = prompt("Rock, Paper, or Scissors?").trim();
+    const humanChoice = prompt("Rock, Paper, or Scissors?").trim().toLowerCase();
     switch (humanChoice) {
         case "r": // Taking advantage of switch fall-through instead of using if-else
-        case "R":
         case "rock":
-        case "Rock":
             return "Rock";
         case "p":
-        case "P":
         case "paper":
-        case "Paper":
             return "Paper";
         case "s":
-        case "S":
         case "scissors":
-        case "Scissors":
             return "Scissors";
         default:
             return null; // to be handled by main game program
