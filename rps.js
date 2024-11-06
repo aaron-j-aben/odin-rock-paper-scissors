@@ -2,10 +2,11 @@
     Rock Paper Scissors
     By Aaron J. Aben
 
-    Simple script that runs one-player RPS in the browser console
+    Simple script that runs RPS in the browser console versus a CPU that selects
+    randomly.
 */
 
-/* Computer selection */
+/* Computer choice selection */
 function getComputerChoice() {
     const cpuNumChoice = Math.floor(Math.random() * 3);
     switch (cpuNumChoice) {
@@ -17,6 +18,8 @@ function getComputerChoice() {
             return "Scissors";
     } 
 }
+
+/* Human choice seleciton*/
 
 /* CPU selection testing code */
 /*
