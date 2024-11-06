@@ -15,7 +15,7 @@ function playRound(humanChoice, computerChoice) {
             case "scissors": return 2;
         }
     };
-    [humanChoice, computerChoice].map(rpsToNum)
+    const choices = [humanChoice, computerChoice].map(rpsToNum);
 }
 
 /* Computer choice selection */
