@@ -14,20 +14,30 @@ playButton.addEventListener('click', playGame);
 function playGame() {
     let humanScore = 0;
     let cpuScore = 0;
-
-    for (let rounds = 5; rounds > 0; rounds--) {
-        switch (playRound(getHumanChoice(), getComputerChoice())) {
-            case 1:
-                humanScore++;
-                break;
-            case -1:
-                cpuScore++;
-                break;
-            case 0:
-                break;
+    let rounds = 5;
+    let errors = 0;
+    while (rounds > 0) {
+        try {
+            switch (playRound(getHumanChoice(), getComputerChoice())) {
+                case 1:
+                    humanScore++;
+                    break;
+                case -1:
+                    cpuScore++;
+                    break;
+                case 0:
+                    break;
+            }
+            console.log('Current Score:');
+            console.log(`You: ${humanScore}, CPU: ${cpuScore}`);
+            round--;
+        } catch (e) {
+            errors++;
+            if (errors >= 4) {
+                console.log("Too many incorrect inputs! Reset the game using the play button");
+                return;
+            }
         }
-        console.log('Current Score:');
-        console.log(`You: ${humanScore}, CPU: ${cpuScore}`);
     }
 
     const pointDiff = humanScore - cpuScore;
@@ -81,7 +91,7 @@ function getComputerChoice() {
     } 
 }
 
-/* Human choice seleciton*/
+/* Human choice selection*/
 function getHumanChoice() {
     const humanChoice = prompt("Rock, Paper, or Scissors?").trim().toLowerCase();
     switch (humanChoice) {
@@ -95,6 +105,7 @@ function getHumanChoice() {
         case "scissors":
             return "scissors";
         default:
+            console.log("That is not a valid option! Please choose rock, paper, or scissors.");
             return null; // to be handled by main game program
     }
 }
