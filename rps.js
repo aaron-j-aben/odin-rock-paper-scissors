@@ -7,6 +7,11 @@
 */
 
 /* Primary Game Logic */
+
+// Play a single round of RPS
+// Returns:
+// true if the player wins
+// false if the player loses
 function playRound(humanChoice, computerChoice) {
     let rpsToNum = (c) => {
         switch(c) {
@@ -16,6 +21,15 @@ function playRound(humanChoice, computerChoice) {
         }
     };
     const choices = [humanChoice, computerChoice].map(rpsToNum);
+    const decision = choices[0] - choices[1];
+
+    if (decision == -2 || decision == 1) {
+        console.log(`You win! Here, ${humanChoice} beats ${computerChoice}.`);
+        return true;
+    } else if (decision == 2 || decision == -1) {
+        console.log(`You lose! Here, ${computerChoice} beats ${humanChoice}.`);
+        return false;
+    }
 }
 
 /* Computer choice selection */
