@@ -19,6 +19,7 @@ function getComputerChoice() {
 }
 
 /* CPU selection testing code */
+/*
 function testGetComputerChoice() {
     let rocks = 0;
     let papers = 0;
@@ -49,3 +50,4 @@ function testGetComputerChoice() {
 }
 
 testGetComputerChoice();
+*/
