@@ -16,11 +16,11 @@ function getComputerChoice() {
     const cpuNumChoice = Math.floor(Math.random() * 3);
     switch (cpuNumChoice) {
         case 0:
-            return "Rock";
+            return "rock";
         case 1:
-            return "Paper";
+            return "paper";
         case 2:
-            return "Scissors";
+            return "scissors";
     } 
 }
 
@@ -30,13 +30,13 @@ function getHumanChoice() {
     switch (humanChoice) {
         case "r": // Taking advantage of switch fall-through instead of using if-else
         case "rock":
-            return "Rock";
+            return "rock";
         case "p":
         case "paper":
-            return "Paper";
+            return "paper";
         case "s":
         case "scissors":
-            return "Scissors";
+            return "scissors";
         default:
             return null; // to be handled by main game program
     }
