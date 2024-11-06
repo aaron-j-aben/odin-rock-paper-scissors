@@ -6,6 +6,11 @@
     randomly.
 */
 
+/* Primary Game Logic */
+function playRound(humanChoice, computerChoice) {
+
+}
+
 /* Computer choice selection */
 function getComputerChoice() {
     const cpuNumChoice = Math.floor(Math.random() * 3);
