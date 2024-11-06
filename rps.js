@@ -8,6 +8,36 @@
 
 /* Primary Game Logic */
 
+// Play a 5-round game of RPS
+function playGame() {
+    let humanScore = 0;
+    let cpuScore = 0;
+
+    for (let rounds = 5; rounds > 0; rounds--) {
+        switch (playRound(getHumanChoice(), getComputerChoice())) {
+            case 1:
+                humanScore++;
+                break;
+            case -1:
+                cpuScore++;
+                break;
+            case 0:
+                break;
+        }
+        console.log('Current Score:');
+        console.log(`You: ${humanScore}, CPU: ${cpuScore}`);
+    }
+
+    const pointDiff = humanScore - cpuScore;
+    if (pointDiff > 0) {
+        console.log("You Win!");
+    } else if (pointDiff < 0) {
+        console.log("You Lose!");
+    } else {
+        console.log("A Tie!");
+    }
+}
+
 // Play a single round of RPS
 // Returns:
 // true if the player wins
