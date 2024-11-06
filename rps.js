@@ -26,7 +26,7 @@ function testGetComputerChoice() {
 
     for (let i = 0; i < 100; i++) {
         try {
-            switch(getComputerChoice) {
+            switch(getComputerChoice()) {
                 case "Rock":
                     rocks++;
                     break;
