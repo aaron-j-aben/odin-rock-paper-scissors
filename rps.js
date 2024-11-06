@@ -90,7 +90,11 @@ function getComputerChoice() {
 function getHumanChoice() {
     let goodInput = false;
     while (!goodInput) {
-        const humanChoice = prompt("Rock, Paper, or Scissors?").trim().toLowerCase();
+        let humanChoice = prompt("Rock, Paper, or Scissors?")
+        if (humanChoice == null) {
+            return null
+        }
+        humanChoice = humanChoice.trim().toLowerCase();
         switch (humanChoice) {
             case "r": // Taking advantage of switch fall-through instead of using if-else
             case "rock":
@@ -101,8 +105,6 @@ function getHumanChoice() {
             case "s":
             case "scissors":
                 return "scissors";
-            case null:
-                return null;
             default:
                 console.log("That is not a valid option! Please choose rock, paper, or scissors.");
         }
