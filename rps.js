@@ -5,4 +5,7 @@
     Simple script that runs one-player RPS in the browser console
 */
 
-console.log("Hello, World!");
+/* Computer selection */
+function getComputerChoice() {
+    
+}
