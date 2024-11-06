@@ -76,3 +76,6 @@ function testGetComputerChoice() {
 
 testGetComputerChoice();
 */
+
+/* Human RPS Choice Testing */
+//console.log(getHumanChoice());
