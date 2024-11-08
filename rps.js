@@ -9,6 +9,7 @@
 /* Primary Game Logic */
 const playButton = document.querySelector(".play");
 const rpsChoiceBtns = document.querySelectorAll('.rpsChoices > button');
+const resultDisplay = document.querySelector('.rpsResult');
 
 playButton.addEventListener('click', playGame);
 
@@ -17,34 +18,35 @@ function playGame() {
     let humanScore = 0;
     let cpuScore = 0;
 
+    // Define function here so it isn't in memory unless player is playing the game
     let handleRpsClick = function(e) {
         const rpsChoice = e.target.value;
-            switch (playRound(rpsChoice, getComputerChoice())) {
-                case 1:
-                    humanScore++;
-                    break;
-                case 2:
-                    cpuScore++;
-                    break;
-                case 0:
-                    break;
-            }
+        switch (playRound(rpsChoice, getComputerChoice())) {
+            case 1:
+                humanScore++;
+                break;
+            case 2:
+                cpuScore++;
+                break;
+            case 0:
+                break;
+        }
 
-            console.log(`You: ${humanScore}, CPU: ${cpuScore}`);
-            
-            if (humanScore == 5) {
-                console.log('You Win!');
-                for (const rpsChoiceBtn of rpsChoiceBtns) {
-                    rpsChoiceBtn.removeEventListener('click', handleRpsClick);
-                }
-                return;
-            } else if (cpuScore == 5) {
-                console.log('You Lost :(');
-                for (const rpsChoiceBtn of rpsChoiceBtns) {
-                    rpsChoiceBtn.removeEventListener('click', handleRpsClick);
-                }
-                return;
+        if (humanScore == 5) {
+            resultDisplay.textContent = `You Win!\nFinal Score\nYou: ${humanScore}, CPU: ${cpuScore}`;
+            for (const rpsChoiceBtn of rpsChoiceBtns) {
+                rpsChoiceBtn.removeEventListener('click', handleRpsClick);
             }
+            return;
+        } else if (cpuScore == 5) {
+            resultDisplay.textContent = `You Lost :(\nFinal Score\nYou: ${humanScore}, CPU: ${cpuScore}`;
+            for (const rpsChoiceBtn of rpsChoiceBtns) {
+                rpsChoiceBtn.removeEventListener('click', handleRpsClick);
+            }
+            return;
+        } else {
+            resultDisplay.textContent = `You: ${humanScore}, CPU: ${cpuScore}`;
+        }
     }
 
     for (const rpsChoiceBtn of rpsChoiceBtns) {
