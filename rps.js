@@ -51,7 +51,7 @@ function playGame() {
     }
 
     function endGame(outcomeMessage) {
-        outcomeDisplay.textContent = outcomeMessage;
+        outcomeDisplay.textContent = outcomeMessage + ' Press play to restart';
         for (const rpsChoiceBtn of rpsChoiceBtns) {
             rpsChoiceBtn.removeEventListener('click', handleRpsClick);
         }
