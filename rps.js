@@ -17,9 +17,8 @@ function playGame() {
     let humanScore = 0;
     let cpuScore = 0;
 
-    for (const rpsChoiceBtn of rpsChoiceBtns) {
-        rpsChoiceBtn.addEventListener('click', function(e) {
-            const rpsChoice = e.target.value;
+    let handleRpsClick = function(e) {
+        const rpsChoice = e.target.value;
             switch (playRound(rpsChoice, getComputerChoice())) {
                 case 1:
                     humanScore++;
@@ -33,7 +32,10 @@ function playGame() {
 
             console.log('Current Score:');
             console.log(`You: ${humanScore}, CPU: ${cpuScore}`);
-        });
+    }
+
+    for (const rpsChoiceBtn of rpsChoiceBtns) {
+        rpsChoiceBtn.addEventListener('click', handleRpsClick);
     }
 
     while (humanScore <= 5 && cpuScore <= 5) {
@@ -41,6 +43,10 @@ function playGame() {
             console.log('You Win!');
         } else {
             console.log('You Lost :(');
+        }
+
+        for (const rpsChoiceBtn of rpsChoiceBtns) {
+            rpsChoiceBtn.removeEventListener('click', handleRpsClick);
         }
 
         return;
