@@ -12,43 +12,38 @@ const rpsChoiceBtns = document.querySelectorAll('.rpsChoices > button');
 
 playButton.addEventListener('click', playGame);
 
-for (const rpsChoiceBtn of rpsChoiceBtns) {
-    rpsChoiceBtn.addEventListener('click', function(e) {
-        const rpsChoice = e.target.value;
-    });
-}
-
 // Play a 5-round game of RPS
 function playGame() {
     let humanScore = 0;
     let cpuScore = 0;
 
-    for (let rounds = 5; rounds > 0; rounds--) {
-        switch (playRound(getHumanChoice(), getComputerChoice())) {
-            case -1: // End game if cancel button is pressed on human choice prompt
-                return;
-            case 1:
-                humanScore++;
-                break;
-            case 2:
-                cpuScore++;
-                break;
-            case 0:
-                break;
-        }
+    for (const rpsChoiceBtn of rpsChoiceBtns) {
+        rpsChoiceBtn.addEventListener('click', function(e) {
+            const rpsChoice = e.target.value;
+            switch (playRound(rpsChoice, getComputerChoice())) {
+                case 1:
+                    humanScore++;
+                    break;
+                case 2:
+                    cpuScore++;
+                    break;
+                case 0:
+                    break;
+            }
 
-        console.log('Current Score:');
-        console.log(`You: ${humanScore}, CPU: ${cpuScore}`);
+            console.log('Current Score:');
+            console.log(`You: ${humanScore}, CPU: ${cpuScore}`);
+        });
     }
 
-    const pointDiff = humanScore - cpuScore;
+    while (humanScore <= 5 && cpuScore <= 5) {
+        if (humanScore == 5) {
+            console.log('You Win!');
+        } else {
+            console.log('You Lost :(');
+        }
 
-    if (pointDiff > 0) {
-        console.log("You Win!");
-    } else if (pointDiff < 0) {
-        console.log("You Lose!");
-    } else {
-        console.log("A Tie!");
+        return;
     }
 }
 
