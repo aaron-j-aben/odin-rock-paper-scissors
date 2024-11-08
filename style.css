@@ -17,3 +17,9 @@
     width: 100px;
     max-width: 100px;
 }
+
+.rpsResult {
+    margin: 10px 0;
+    padding: 10px;
+    text-align: center;
+}
