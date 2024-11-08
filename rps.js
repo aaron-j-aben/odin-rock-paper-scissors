@@ -83,13 +83,13 @@ function playRound(humanChoice, computerChoice) {
     const decision = choices[0] - choices[1];
 
     if (decision == -2 || decision == 1) {
-        console.log(`You win! Here, ${humanChoice} beats ${computerChoice}.`);
+        outcomeDisplay.textContent = `You win the round! Here, ${humanChoice} beats ${computerChoice}.`;
         return 1;
     } else if (decision == 2 || decision == -1) {
-        console.log(`You lose! Here, ${computerChoice} beats ${humanChoice}.`);
+        outcomeDisplay.textContent = `You lose the round! Here, ${computerChoice} beats ${humanChoice}.`;
         return 2;
     } else {
-        console.log(`A tie on ${humanChoice}!`);
+        outcomeDisplay.textContent = `A tie on ${humanChoice}!`;
         return 0;
     }
 }
