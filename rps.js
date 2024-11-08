@@ -30,27 +30,27 @@ function playGame() {
                     break;
             }
 
-            console.log('Current Score:');
             console.log(`You: ${humanScore}, CPU: ${cpuScore}`);
+            
+            if (humanScore == 5) {
+                console.log('You Win!');
+                for (const rpsChoiceBtn of rpsChoiceBtns) {
+                    rpsChoiceBtn.removeEventListener('click', handleRpsClick);
+                }
+                return;
+            } else if (cpuScore == 5) {
+                console.log('You Lost :(');
+                for (const rpsChoiceBtn of rpsChoiceBtns) {
+                    rpsChoiceBtn.removeEventListener('click', handleRpsClick);
+                }
+                return;
+            }
     }
 
     for (const rpsChoiceBtn of rpsChoiceBtns) {
         rpsChoiceBtn.addEventListener('click', handleRpsClick);
     }
 
-    while (humanScore <= 5 && cpuScore <= 5) {
-        if (humanScore == 5) {
-            console.log('You Win!');
-        } else {
-            console.log('You Lost :(');
-        }
-
-        for (const rpsChoiceBtn of rpsChoiceBtns) {
-            rpsChoiceBtn.removeEventListener('click', handleRpsClick);
-        }
-
-        return;
-    }
 }
 
 // Play a single round of RPS
