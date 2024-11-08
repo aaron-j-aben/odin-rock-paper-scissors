@@ -14,9 +14,10 @@ playButton.addEventListener('click', playGame);
 function playGame() {
     let humanScore = 0;
     let cpuScore = 0;
+
     for (let rounds = 5; rounds > 0; rounds--) {
         switch (playRound(getHumanChoice(), getComputerChoice())) {
-            case -1:
+            case -1: // End game if cancel button is pressed on human choice prompt
                 return;
             case 1:
                 humanScore++;
@@ -27,11 +28,13 @@ function playGame() {
             case 0:
                 break;
         }
+
         console.log('Current Score:');
         console.log(`You: ${humanScore}, CPU: ${cpuScore}`);
     }
 
     const pointDiff = humanScore - cpuScore;
+
     if (pointDiff > 0) {
         console.log("You Win!");
     } else if (pointDiff < 0) {
@@ -56,9 +59,13 @@ function playRound(humanChoice, computerChoice) {
     };
 
     const choices = [humanChoice, computerChoice].map(rpsToNum);
-    if (choices[0] == null) {
+
+    // Account for case where cancel button is pressed
+    // Propagate up for game logic to handle
+    if (choices[0] == null) { 
         return -1;
     }
+
     const decision = choices[0] - choices[1];
 
     if (decision == -2 || decision == 1) {
@@ -76,6 +83,7 @@ function playRound(humanChoice, computerChoice) {
 /* Computer choice selection */
 function getComputerChoice() {
     const cpuNumChoice = Math.floor(Math.random() * 3);
+    // maps [0,1,2] to [r,p,s]
     switch (cpuNumChoice) {
         case 0:
             return "rock";
@@ -86,14 +94,18 @@ function getComputerChoice() {
     } 
 }
 
-/* Human choice selection*/
+/* Human choice selection */
 function getHumanChoice() {
     let goodInput = false;
     while (!goodInput) {
-        let humanChoice = prompt("Rock, Paper, or Scissors?")
+        let humanChoice = prompt("Rock, Paper, or Scissors?");
+
+        // prompt is null if cancel button/escape is pressed
+        // propagate this choice up
         if (humanChoice == null) {
             return null
         }
+
         humanChoice = humanChoice.trim().toLowerCase();
         switch (humanChoice) {
             case "r": // Taking advantage of switch fall-through instead of using if-else
