@@ -15,6 +15,7 @@ playButton.addEventListener('click', playGame);
 
 // Play a 5-round game of RPS
 function playGame() {
+    resultDisplay.textContent = '';
     let humanScore = 0;
     let cpuScore = 0;
 
