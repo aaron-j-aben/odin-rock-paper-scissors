@@ -8,7 +8,15 @@
 
 /* Primary Game Logic */
 const playButton = document.querySelector(".play");
+const rpsChoiceBtns = document.querySelectorAll('.rpsChoices > button');
+
 playButton.addEventListener('click', playGame);
+
+for (const rpsChoiceBtn of rpsChoiceBtns) {
+    rpsChoiceBtn.addEventListener('click', function(e) {
+        const rpsChoice = e.target.value;
+    });
+}
 
 // Play a 5-round game of RPS
 function playGame() {
