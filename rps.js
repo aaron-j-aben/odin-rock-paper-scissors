@@ -9,13 +9,15 @@
 /* Primary Game Logic */
 const playButton = document.querySelector(".play");
 const rpsChoiceBtns = document.querySelectorAll('.rpsChoices > button');
-const resultDisplay = document.querySelector('.rpsResult');
+const scoreDisplay = document.querySelector('#score');
+const outcomeDisplay = document.querySelector('#finalOutcome');
 
 playButton.addEventListener('click', playGame);
 
 // Play a 5-round game of RPS
 function playGame() {
-    resultDisplay.textContent = '';
+    scoreDisplay.textContent = '';
+    outcomeDisplay.textContent = '';
     let humanScore = 0;
     let cpuScore = 0;
 
